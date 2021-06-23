@@ -5,7 +5,6 @@ import AddProductModal from "../AddMenuModal/addMenuModal";
 
 import {
   getMenuDetail,
-  deleteMenuDetail,
 } from "../redux/actions/menu";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -46,11 +45,6 @@ const GetMenu = () => {
     setCurrentId(id);
   };
 
-  const handleDelete = (id) => {
-    if (id) {
-      deldispatch(deleteMenuDetail(id));
-    }
-  };
 
   return (
     <Box style={{ marginTop: 100 }}>
@@ -120,18 +114,6 @@ const GetMenu = () => {
                       }}
                     >
                       Edit
-                    </Button>
-
-                    <Button
-                      className={classes.btnstyle}
-                      style={{ marginLeft: 20 }}
-                      variant="contained"
-                      color="secondary"
-                      onClick={() => {
-                        handleDelete(item._id);
-                      }}
-                    >
-                      Delete
                     </Button>
                   </Box>
                 </Card>
