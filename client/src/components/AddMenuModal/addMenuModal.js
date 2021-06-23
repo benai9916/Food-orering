@@ -20,9 +20,9 @@ const AddMenuModal = ({ currentId, open, handleClose, setReload }) => {
 
   const [productData, setProductData] = useState({
     name: "",
-    rollno: "",
-    subject: [],
-    branch: "",
+    description: "",
+    price: [],
+    image: "",
   });
 
   useEffect(() => {
@@ -44,11 +44,8 @@ const AddMenuModal = ({ currentId, open, handleClose, setReload }) => {
   //  form data
   const handleSubmit = (e) => {
     setReload(true);
-
-    e.preventDefault();
-    if (currentId) {
-      dispatch(addMenuDetail(productData));
-    }
+    console.log("=========================",productData )
+    dispatch(addMenuDetail(productData));
     handleClose();
   };
 
@@ -84,9 +81,9 @@ const AddMenuModal = ({ currentId, open, handleClose, setReload }) => {
                 className={classes.txtfield}
                 required
                 label="price"
-                value={productData.rollno}
+                value={productData.price}
                 onChange={(e) =>
-                  setProductData({ ...productData, rollno: e.target.value })
+                  setProductData({ ...productData, price: e.target.value })
                 }
               />
 
@@ -94,9 +91,9 @@ const AddMenuModal = ({ currentId, open, handleClose, setReload }) => {
                 className={classes.txtfield}
                 required
                 label="Description"
-                value={productData.rollno}
+                value={productData.description}
                 onChange={(e) =>
-                  setProductData({ ...productData, rollno: e.target.value })
+                  setProductData({ ...productData, description: e.target.value })
                 }
               />
 
@@ -105,7 +102,7 @@ const AddMenuModal = ({ currentId, open, handleClose, setReload }) => {
                   type="file"
                   multiple={false}
                   onDone={({ base64 }) =>
-                    setProductData({ ...productData, selectedFile: base64 })
+                    setProductData({ ...productData, image: base64 })
                   }
                 />
               </Box>

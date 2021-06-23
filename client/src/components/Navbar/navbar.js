@@ -1,13 +1,14 @@
 import React , { useEffect, useState } from 'react';
 import useStyles from './style';
-import { IconButton, Button, Typography,Toolbar, AppBar } from '@material-ui/core';
+import { IconButton, Button, Typography,Toolbar, AppBar, InputBase } from '@material-ui/core';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import {Link, useHistory, useLocation} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import * as actionType from '../constants/actionType';
 import decode from 'jwt-decode';
+import SearchIcon from "@material-ui/icons/Search";
 
-const NavBar = ()  => {
+const NavBar = ({ searchProduct })  => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const dispatch = useDispatch();
   const location = useLocation();
@@ -51,6 +52,20 @@ const NavBar = ()  => {
           <Typography component={Link} to="/" variant="h6" className={classes.title} style={{ color: "black", textDecoration: 'none'}}>
             Home
           </Typography>
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              placeholder="Search..."
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ "aria-label": "search" }}
+              onChange={searchProduct}
+            />
+          </div>
           {user?.result ?  (
             <div style={{ display: 'flex', alignItems: "center"}}>
               <h3> Welcome {user?.result.name}</h3>

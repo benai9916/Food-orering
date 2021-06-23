@@ -15,6 +15,7 @@ export const getMenuDetail = () => async (dispatch) => {
 
 export const addMenuDetail = (products) => async (dispatch) => {
     try {   
+        console.log("=========================", products)
         const {data} = await  api.addDetail(products)
 
         dispatch({ type: CREATE , payload: data})

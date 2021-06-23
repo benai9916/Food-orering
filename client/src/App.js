@@ -15,6 +15,12 @@ const App = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const dispatch = useDispatch();
   const history = useHistory();
+  const [search, setSearch] = useState("");
+
+    // search
+    const searchProduct = (e) => {
+      setSearch(e.target.value)
+    }
 
   useEffect(() => {
     const token = user?.token;
@@ -42,7 +48,7 @@ const App = () => {
            <Container width="xl">
              <Switch>
 
-               <Route path="/" exact component={Menu}/>
+               <Route path="/" exact  render={() => ( <Menu search={search} />)} />
              </Switch>
              <Route path="/auth" exact component={Auth} />
            </Container>
