@@ -24,25 +24,3 @@ export const createMenuDetail = async(req, res) => {
         res.status(409).json({ message : error })
     }
 }
-
-export const updateMenuDetail = async (req, res) => {
-    const {id : _id } = req.params
-    const data =  req.body;
-
-    if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No product with that id');
-
-    const updateMenu =  await addMenuDetail.findByIdAndUpdate(_id, {...data, _id} , { new: true})
-
-    res.json(updateMenu)
-}
-
-
-export const deleteMenuDetail = async (req, res) => {
-    const {id } = req.params;
-
-    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No product with that id');
-
-    await addMenuDetail.findByIdAndRemove(id);
-
-    res.json( { message: "Product deleted successfully..!"});
-}

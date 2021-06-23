@@ -22,23 +22,3 @@ export const addMenuDetail = (products) => async (dispatch) => {
         console.log('post error ==> ', error)
     }
 }
-
-export const updateMenuDetail = (id, products) => async (dispatch) => {
-    try {
-       const { data } =  await api.updateDetail(id, products)
-
-       dispatch({ type: UPDATE, payload: data})
-    } catch(error) {
-        console.log(error)
-    }
-}
-
-export const deleteMenuDetail = (id) => async (dispatch) => {
-    try {
-        await api.deleteDetail(id)
-
-        dispatch({ type: DELETE, payload: id})
-    } catch (error) {
-        console.log(error)
-    }
-}
